@@ -6,6 +6,10 @@
   background-color: var(--purple);
 }
 
+.bg-purple-10{
+  background-color: rgba(42, 0, 78, .3);
+}
+
 .bg-purple:hover {
   background-color: var(--purple);
 }
@@ -16,6 +20,21 @@
 
 .border-purple {
   border: solid 3px var(--purple);
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+}
+
+.hover-effect{
+  transition: all .3s ease;
+}
+
+.hover-effect:hover {
+  transform: scale(.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+  cursor: pointer;
 }
 
 .card-user {
