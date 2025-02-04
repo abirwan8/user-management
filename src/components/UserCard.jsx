@@ -117,8 +117,8 @@ const UserCard = () => {
                 />
                 <Card.Title className="fw-bold mt-2">{user.name}</Card.Title>
                 <div className="d-flex justify-content-center gap-2 mb-2">
-                  <small className="bg-purple-10 py-1 px-2 rounded-2">{user.address.city}</small>
-                  <small className="bg-purple-10 py-1 px-2 rounded-2"><a href="#" className="text-dark text-decoration-none">{user.website}</a></small>
+                  <small className="bg-purple-30 py-1 px-2 rounded-2">{user.address.city}</small>
+                  <small className="bg-purple-30 py-1 px-2 rounded-2"><a href="#" className="text-dark text-decoration-none">{user.website}</a></small>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nihil adipisci sunt dolore tenetur delectus?</p>
                 <div className="d-flex justify-content-center gap-2">
