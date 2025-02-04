@@ -15,5 +15,14 @@
 }
 
 .border-purple {
-  border: solid 2px var(--purple);
+  border: solid 3px var(--purple);
+}
+
+.card-user {
+  border-bottom: solid 4px var(--purple) !important;
+  border-radius: 16px;
+}
+
+.text-purple{
+  color: var(--purple);
 }

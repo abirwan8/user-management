@@ -3,7 +3,9 @@ import "./App.css";
 import React, { useState } from "react";
 import UserCard from "./components/UserCard";
 import ButtonComponent from "./components/ButtonComponent";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import ModalComponent from "./components/ModalComponent";
+import FormComponent from "./components/FormComponent";
+import { Form, Image } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 
 const App = () => {
@@ -11,6 +13,21 @@ const App = () => {
 
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
+
+  // Image Preview
+  const [file, setFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewURL(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <div className="m-4">
       <div className="d-flex justify-content-between align-items-center mb-4 bg-purple py-3 px-4 rounded-2">
@@ -20,33 +37,21 @@ const App = () => {
 
       <UserCard />
 
-      {/* Modal Add Data User */}
-      <Modal show={showAdd} onHide={handleCloseAdd} backdrop="static" keyboard={false} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Data User</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Control type="text" placeholder="Your Full Name" className="mb-2" />
-            <Row>
-              <Col xs={12} md={6}>   
-                <Form.Control type="text" placeholder="Address" className="mb-2" />
-              </Col>
+      {/* Modal Add Data */}
+      <ModalComponent title={"Add Data"} show={showAdd} onHide={handleCloseAdd} buttonLabel={"Save"} onClick={handleCloseAdd}>
+        <FormComponent>
+          <div className="d-flex flex-column align-items-center mb-2">
+            <Form.Control type="file" id="fileInput" accept="image/*" onChange={handleFileChange} className="d-none mb-2 h-25" />
 
-              <Col xs={12} md={6}>   
-                <Form.Control type="text" placeholder="Website" className="mb-2" />
-              </Col>
-            </Row>
-            <Form.Control as="textarea" rows={3} placeholder="Description" />
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" className="border-0" onClick={handleCloseAdd}>
-            Cancel
-          </Button>
-          <Button className="bg-purple border-0 text-white">Add</Button>
-        </Modal.Footer>
-      </Modal>
+            {previewURL && <Image src={previewURL || "https://via.placeholder.com/600/92c952"} roundedCircle className="w-25 h-25 object-fit-cover" alt="avatar" />}
+
+            <label htmlFor="fileInput" className="text-purple fw-medium d-flex align-items-center gap-2" style={{ cursor: "pointer" }}>
+              <FaPlus />
+              Add Image
+            </label>
+          </div>
+        </FormComponent>
+      </ModalComponent>
     </div>
   );
 };
